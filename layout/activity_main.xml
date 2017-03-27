@@ -4,9 +4,13 @@
     android:layout_height="fill_parent"
     android:weightSum="1"
     android:baselineAligned="false"
-    android:orientation="vertical"
-    android:scaleY="1">
+    android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/hudable"
+        android:scaleY="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextClock
         android:id="@+id/digital_clock"
         android:layout_width="wrap_content"
@@ -17,6 +21,7 @@
         android:layout_centerHorizontal="true"
         android:format12Hour="HH:mm:ss\ndd MMM"
         android:format24Hour="HH:mm:ss\ndd MMM"/>
+        </RelativeLayout>
 
     <Button
         android:id="@+id/button1"
