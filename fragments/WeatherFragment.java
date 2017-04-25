@@ -73,14 +73,14 @@ public class WeatherFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        final View v = inflater.inflate(R.layout.fragment_weather, container, false);
         final String url = URL_BASE + URL_COORD + URL_UNIT + URL_API;
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -114,10 +114,10 @@ public class WeatherFragment extends Fragment {
 
                     //declaration
 
-                    maxTempView = (TextView) getView().findViewById(R.id.maxTempView);
-                    minTempView = (TextView) getView().findViewById(R.id.minTempView);
-                    statusWeather =(TextView) getView().findViewById(R.id.weatherStatus);
-                    cityName = (TextView) getView().findViewById(R.id.cityName);
+                    maxTempView = (TextView) v.findViewById(R.id.maxTempView);
+                    minTempView = (TextView) v.findViewById(R.id.minTempView);
+                    statusWeather =(TextView) v.findViewById(R.id.weatherStatus);
+                    cityName = (TextView) v.findViewById(R.id.cityName);
 
                     //dynamic data like API
 
@@ -143,13 +143,7 @@ public class WeatherFragment extends Fragment {
             }
         });
         Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weather, container, false);
+        return v;
     }
 
 }
